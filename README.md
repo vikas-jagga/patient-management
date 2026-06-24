@@ -249,13 +249,16 @@ kubectl wait --for=condition=ready pod/postgres-0 -n patient-management --timeou
 curl http://34.45.149.97/api/patients
 
 # Rolling update
-kubectl set image deployment/patient-api-deployment patient-api=vikaskumarjagga/patient-management:1.0.1 -n patient-management
+kubectl set image deployment/patient-api-deployment patient-api=vikaskumarjagga/patient-management:1.0.3 -n patient-management
 kubectl rollout status deployment/patient-api-deployment -n patient-management
+kubectl get deployment patient-api-deployment -n patient-management -o=jsonpath='{.spec.template.spec.containers[*].image}'
 
 # FinOps
 kubectl top pods -n patient-management
 kubectl get hpa -n patient-management
-kubectl apply -f k8s/finops-optimized-api-resources.yaml
+kubectl get deployment patient-api-deployment -n patient-management -o yaml | grep -A5 resources
+kubectl patch deployment patient-api-deployment -n patient-management --patch-file k8s/finops-optimized-api-resources.yaml
+kubectl get deployment patient-api-deployment -n patient-management -o yaml | grep -A5 resources
 ```
 
 ---
@@ -264,7 +267,7 @@ kubectl apply -f k8s/finops-optimized-api-resources.yaml
 
 | Requirement | Implementation                                      |
 |-------------|-----------------------------------------------------|
-| Docker image | `vikaskumarjagga/patient-management:1.0.0`          |
+| Docker image | `vikaskumarjagga/patient-management:1.0.1`          |
 | GKE storage | `standard-rwo` PVC                                  |
 | API exposed | Ingress (nginx)                                     |
 | DB internal | ClusterIP `postgres-service`                        |
