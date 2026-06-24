@@ -71,18 +71,18 @@ flowchart TB
 
 ### Kubernetes Objects Map
 
-| Object | File | Purpose |
-|--------|------|---------|
-| Namespace | `namespace.yaml` | Isolate resources |
-| ConfigMap | `configmap-api.yaml`, `configmap-db.yaml` | External DB configuration |
-| Secret | created via kubectl | DB passwords |
-| Deployment | `deployment-api.yaml` | 4 API pods, rolling updates |
+| Object | File | Purpose                               |
+|--------|------|---------------------------------------|
+| Namespace | `namespace.yaml` | Isolate resources                     |
+| ConfigMap | `configmap-api.yaml`, `configmap-db.yaml` | External DB configuration             |
+| Secret | created via kubectl | DB passwords                          |
+| Deployment | `deployment-api.yaml` | 2-4 API pods, rolling updates         |
 | StatefulSet | `statefulset-db.yaml` | 1 PostgreSQL pod with stable identity |
-| PVC | `volumeClaimTemplates` in StatefulSet | Persistent database storage |
-| Service (ClusterIP) | `service-api.yaml`, `service-db.yaml` | Internal routing; API → DB via DNS |
-| Service (Headless) | `service-db-headless.yaml` | StatefulSet network identity |
-| Ingress | `ingress-api.yaml` | External API access |
-| HPA | `hpa-api.yaml` | Auto-scale API tier |
+| PVC | `volumeClaimTemplates` in StatefulSet | Persistent database storage           |
+| Service (ClusterIP) | `service-api.yaml`, `service-db.yaml` | Internal routing; API → DB via DNS    |
+| Service (Headless) | `service-db-headless.yaml` | StatefulSet network identity          |
+| Ingress | `ingress-api.yaml` | External API access                   |
+| HPA | `hpa-api.yaml` | Auto-scale API tier                   |
 
 ### API Endpoints
 
@@ -161,4 +161,4 @@ kubectl apply -f k8s/finops-optimized-api-resources.yaml
 - [x] README with Docker Hub URL: `https://hub.docker.com/r/vikaskumarjagga/patient-management`
 - [ ] GitHub repo URL `https://github.com/vikas-jagga/patient-management`
 - [ ] Ingress public URL `http://34.45.149.97/api/patients`
-- [ ] Screen recording (record demo steps from README Step 5)
+- [ ] Screen recording
