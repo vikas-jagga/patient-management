@@ -234,9 +234,9 @@ Then: `http://34.45.149.97//api/patients`
 
 ## Step 5: Assignment Demo (screen recording)
 
-```powershell
+```
 kubectl get all,pvc,ingress,hpa,configmap -n patient-management
-curl http://<INGRESS_IP>/api/patients
+curl http://34.45.149.97/api/patients
 
 # Self-healing API pod
 kubectl delete pod -n patient-management -l app=patient-api
@@ -246,7 +246,7 @@ kubectl get pods -n patient-management -w
 kubectl get statefulset,pvc -n patient-management
 kubectl delete pod postgres-0 -n patient-management
 kubectl wait --for=condition=ready pod/postgres-0 -n patient-management --timeout=120s
-curl http://<INGRESS_IP>/api/patients
+curl http://34.45.149.97/api/patients
 
 # Rolling update
 kubectl set image deployment/patient-api-deployment patient-api=vikaskumarjagga/patient-management:1.0.1 -n patient-management
