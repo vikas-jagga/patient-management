@@ -32,7 +32,7 @@ Build a multi-tier Kubernetes system with:
                     Ingress
                         |
                 Spring Boot API
-                  (4 replicas)
+                  (2-4 replicas)
                         |
               ClusterIP Service
               (postgres-service)
@@ -106,7 +106,7 @@ Inter-tier communication uses **Service DNS** (`postgres-service`), not pod IPs.
 
 ### Seed Data
 
-8 patients inserted once via `DataInitializer` on empty database.
+1 patient inserted once via `DataInitializer` on empty database.
 
 ## 4. Justification for Resources
 
@@ -126,7 +126,7 @@ Inter-tier communication uses **Service DNS** (`postgres-service`), not pod IPs.
 
 ### HPA
 
-- Min: 4, Max: 6
+- Min: 2, Max: 4
 - CPU target: 70%, Memory target: 80%
 
 ## 5. FinOps Optimization
@@ -159,6 +159,6 @@ kubectl apply -f k8s/finops-optimized-api-resources.yaml
 - [x] Dockerfile
 - [x] Kubernetes YAML in `k8s/`
 - [x] README with Docker Hub URL: `https://hub.docker.com/r/vikaskumarjagga/patient-management`
-- [ ] GitHub repo URL (add your link)
-- [ ] Ingress public URL (add after GKE deploy)
+- [ ] GitHub repo URL `https://github.com/vikas-jagga/patient-management`
+- [ ] Ingress public URL `http://34.45.149.97/api/patients`
 - [ ] Screen recording (record demo steps from README Step 5)
