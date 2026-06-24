@@ -1,0 +1,12 @@
+target/
+.idea/
+*.iml
+.mvn/
+mvnw
+mvnw.cmd
+.git/
+*.log
+src/main/resources/application-local.yml
+src/main/resources/application-gcp.yml
+k8s/
+scripts/

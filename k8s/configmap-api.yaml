@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: api-config
+  namespace: patient-management
+data:
+  DB_HOST: postgres-service
+  DB_PORT: "5432"
+  DB_NAME: patientdb
+  DB_USERNAME: patientuser
+  SERVER_PORT: "8080"
